@@ -9,7 +9,7 @@ configuration files.
 Installation
 ------------
 
-    gem install 'Thin_Upstreams'
+    gem install Thin_Upstreams
 
 Notes
 -----
