@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+# -*- ruby -*-
+# 
+
+
+require "Thin_Upstreams"
+
+Thin_Upstreams(*ARGV)
