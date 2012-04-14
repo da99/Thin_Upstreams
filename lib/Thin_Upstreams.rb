@@ -4,7 +4,7 @@ require "yaml"
 def Thin_Upstreams glob = "./*/config/thin.yml"
 
   str = %~\n~
-  arr = Dir.glob(glob).each { |file|
+  arr = Dir.glob(glob).sort.each { |file|
       o = YAML::load File.read(file)
       app_name = begin
                    pwd  = File.join( File.expand_path("."), "/" )
