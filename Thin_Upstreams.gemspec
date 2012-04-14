@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.version     = Thin_Upstreams::VERSION
   s.authors     = ["da99"]
   s.email       = ["i-hate-spam-45671204@mailinator.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/da99/Thin_Upstreams"
   s.summary     = %q{ Create upstreams conf file for Nginx. }
   s.description = %q{
     A Ruby gem to generate .conf files with upstreams
