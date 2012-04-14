@@ -2,20 +2,45 @@
 Thin\_Upstreams
 ================
 
-A Ruby\_gem.
+A Ruby gem to generate .conf files with upstreams
+to include in your nginx.conf. It uses your Thin
+configuration files.
 
 Installation
 ------------
 
     gem 'Thin_Upstreams'
 
-Usage
+Notes
+-----
+ 
+File upstreams.conf is created in current working directory.
+You can't specify file output name.
+
+Usage: In Ruby
 ------
+
+Accepts optional file globs:
 
     require "Thin_Upstreams"
     
-    Thin_Upstreams
+    Dir.chdir("/apps") {
+      Thin_Upstreams()
+      Thin_Upstreams "*/configs/my.thin.yml", "./**/config.yml"
+    }
+    
+File /app/upstreams.conf is created/overwritten. You
 
+Usage: Bash/Shell
+------
+
+File glob arguments are optional:
+
+    cd /apps
+    Thin_Upstreams
+    Thin_Upstreams "*/configs/my.thin.yml", "./**/config.yml"
+
+File /app/upstreams.conf is created/overwritten.
 
 Run Tests
 ---------

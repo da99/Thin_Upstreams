@@ -9,8 +9,12 @@ Gem::Specification.new do |s|
   s.authors     = ["da99"]
   s.email       = ["i-hate-spam-45671204@mailinator.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{ Create upstreams conf file for Nginx. }
+  s.description = %q{
+    A Ruby gem to generate .conf files with upstreams
+    to include in your nginx.conf. It uses your
+    Thin config files: ./*/thin.yml, ./*/config/thin.yml
+  }
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
