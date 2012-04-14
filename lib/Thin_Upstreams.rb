@@ -15,7 +15,7 @@ def Thin_Upstreams glob = "./*/config/thin.yml"
       ports = Thin_Upstreams.port_to_array(o["port"], o["servers"])
       str << %~
         upstream #{app_name} {
-          #{ ports.map { |i| "server 127.0.0.1:#{i}" }.join("\n") }
+          #{ ports.map { |i| "server 127.0.0.1:#{i}" }.join(";\n") };
         }
       ~
     }

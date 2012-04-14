@@ -28,7 +28,9 @@ end
 def reset_file
   chdir { 
     file = "upstreams.conf"
+    nginx = "nginx.conf"
     Exit_Zero "rm #{file}" if File.exists?(file)
+    Exit_Zero "rm #{nginx}" if File.exists?(nginx)
   }
 end
 

@@ -10,6 +10,43 @@ describe "Thin_Upstreams" do
     }
   end
 
+  unless `which nginx`.strip.empty?
+    it "creates upstreams.conf file that validates when included in NGIX conf." do
+      chdir {
+        Thin_Upstreams()
+        path = File.expand_path("upstreams.conf")
+        nginx = File.expand_path("nginx.conf")
+        File.write "nginx.conf", %!
+          user www-data;
+          worker_processes 4;
+          pid /var/run/nginx.pid;
+
+          events {
+            worker_connections 768;
+            # multi_accept on;
+          }
+
+          http {
+            error_log #{File.dirname(path) + "/error.log"};
+            sendfile on;
+            tcp_nopush on;
+            tcp_nodelay on;
+            keepalive_timeout 65;
+            types_hash_max_size 2048;
+            include #{path};
+            server {
+              location / {
+                proxy_pass http://Hi;
+              }
+            }
+          }
+        !
+        `nginx -t -c #{nginx} 2>&1`
+        .should.match %r!the configuration file /tmp/Thin_Upstreams/nginx.conf syntax is ok!
+      }
+    end
+  end
+
   it "generates content based on: */config/thin.yml" do
     target = "upstream Hi"
     chdir {
