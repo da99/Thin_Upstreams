@@ -17,7 +17,7 @@ describe "Thin_Upstreams (bin executable)" do
   it "creates upstreams.conf file" do
     target = "upstream Hi"
     chdir {
-      Exit_Zero "Thin_Upstreams"
+      Exit_0 "Thin_Upstreams"
       File.read("upstreams.conf")[target].should == target
     }
   end
@@ -25,7 +25,7 @@ describe "Thin_Upstreams (bin executable)" do
   it "accepts a file glob" do
     target = ":601"
     chdir {
-      Exit_Zero "Thin_Upstreams \"*/custom/*.yml\""
+      Exit_0 "Thin_Upstreams \"*/custom/*.yml\""
       File.read("upstreams.conf")[target].should == target
     }
   end
