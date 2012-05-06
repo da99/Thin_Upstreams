@@ -64,27 +64,33 @@ Note: Output File
 Usage: In Ruby
 ------
 
-Accepts optional file glob:
-
     require "Thin_Upstreams"
     
     Dir.chdir("/my_apps") {
+    
       Thin_Upstreams()
+      # or...
       Thin_Upstreams "*/configs/my.thin.yml"
+      
+      # File /my_apps/upstreams.conf is 
+      #   created/overwritten.
     }
     
-File /my\_apps/upstreams.conf is created/overwritten.
+The file glob follows the same format use by [Dir.glob](http://ruby-doc.org/core-1.9.3/Dir.html#method-c-glob).
+
+**Remember**: Use `Thin_Upstreams()`, not `Thin_Upstreams`, when using no arguments.
 
 Usage: Bash/Shell
 ------
 
-File glob argument is optional:
-
     cd /my_apps
     Thin_Upstreams
-    Thin_Upstreams "*/configs/my.thin.yml"
+    Thin_Upstreams "*/configs/thin.yml"
 
-File /my\_app/upstreams.conf is created/overwritten.
+**Remember**: Use single quotation marks when using a Ruby-style glob in your shell to 
+prevent your shell from expanding the glob:
+
+    Thin_Upstreams '*/{configs,.}/thin.yml'
 
 Run Tests
 ---------

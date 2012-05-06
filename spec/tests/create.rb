@@ -76,5 +76,14 @@ describe "Thin_Upstreams" do
     }
   end
 
+  it "uses a default glob of: */{config,.}/thin.yml" do
+    chdir {
+      Thin_Upstreams()
+      %w{ 3010 6010 7020 }.each { |port|
+        File.read('upstreams.conf')[":7020"].should == ":7020"
+      }
+    }
+  end
+
 end # === Thin_Upstreams
 

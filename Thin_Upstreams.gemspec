@@ -5,7 +5,7 @@ require "Thin_Upstreams/version"
 
 Gem::Specification.new do |s|
   s.name        = "Thin_Upstreams"
-  s.version     = Thin_Upstreams::VERSION
+  s.version     = Thin_Upstreams_Version
   s.authors     = ["da99"]
   s.email       = ["i-hate-spam-45671204@mailinator.com"]
   s.homepage    = "https://github.com/da99/Thin_Upstreams"

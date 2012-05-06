@@ -1,7 +1,7 @@
 require 'Thin_Upstreams/version'
 require "yaml"
 
-def Thin_Upstreams glob = "./*/config/thin.yml"
+def Thin_Upstreams glob = "./*/{config,.}/thin.yml"
 
   str = %~\n~
   arr = Dir.glob(glob).sort.each { |file|
@@ -12,7 +12,7 @@ def Thin_Upstreams glob = "./*/config/thin.yml"
                    path.sub(pwd, '').split("/").first
                  end
       
-      ports = Thin_Upstreams.port_to_array(o["port"], o["servers"])
+      ports = Thin_Port_To_Array(o["port"], o["servers"])
       str << %~
         upstream #{app_name} {
           #{ ports.map { |i| "server 127.0.0.1:#{i}" }.join(";
@@ -24,18 +24,8 @@ def Thin_Upstreams glob = "./*/config/thin.yml"
   File.write "upstreams.conf", str
 end
 
-class Thin_Upstreams
-  
-  module Class_Methods
-
-    def port_to_array raw_port, raw_num
-      port = Integer(raw_port)
-      q    = Integer(raw_num || 1)
-      (0...q).to_a.map { |i| port + i }
-    end
-
-  end # === module Class_Methods
-  
-  extend Class_Methods
-  
-end # === class Thin_Upstreams
+def Thin_Port_To_Array raw_port, raw_num
+  port = Integer(raw_port)
+  q    = Integer(raw_num || 1)
+  (0...q).to_a.map { |i| port + i }
+end
