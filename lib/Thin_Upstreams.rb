@@ -30,7 +30,7 @@ class Thin_Upstreams
 
     def port_to_array raw_port, raw_num
       port = Integer(raw_port)
-      q    = Integer(raw_num)
+      q    = Integer(raw_num || 1)
       (0...q).to_a.map { |i| port + i }
     end
 

@@ -67,5 +67,14 @@ describe "Thin_Upstreams" do
     }
   end
   
+  it "accepts thin.yml files without :servers as a key" do
+    chdir {
+      Thin_Upstreams "*/thin.yml"
+      %w{ 7020 }.each { |port|
+        File.read('upstreams.conf')[":7020"].should == ":7020"
+      }
+    }
+  end
+
 end # === Thin_Upstreams
 

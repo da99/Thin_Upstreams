@@ -21,6 +21,9 @@ def reset_dir
   
   Exit_0 "mkdir -p #{DIR}/Hello/config"
   Exit_0 "mkdir -p #{DIR}/Hello/custom"
+  Exit_0 "mkdir -p #{DIR}/No_Servers"
+  
+  File.write "#{DIR}/No_Servers/thin.yml", File.read("spec/files/no_servers.yml")
   
   chdir {
     Exit_0 "cd Hi/config    && bundle exec thin config -C thin.yml --port 3010 --servers 2"
